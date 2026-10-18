@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style/Animation.css";
+import "./Style/Animation.css";
 function Animation({ onComplete }) {
   // Phase state: 'idle' -> 'entering' -> 'settled' -> 'zooming' -> 'complete'
   const [phase, setPhase] = useState("idle");
