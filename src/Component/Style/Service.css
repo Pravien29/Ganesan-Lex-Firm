@@ -1,0 +1,634 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap');
+
+:root {
+  --navy:       #0d1b2a;
+  --gold:       #c9a84c;
+  --gold-light: #e0c068;
+  --cream:      #faf8f3;
+  --white:      #ffffff;
+  --slate:      #4a5568;
+
+  --ff-display: 'Cormorant Garamond', 'Georgia', serif;
+  --ff-heading: 'Cinzel', 'Georgia', serif;
+  --ff-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Fix: reset all link colors inside service container ── */
+.service-container a,
+.service-container p,
+.card-text p,
+.card-text h3 {
+  color: unset;
+}
+
+/* Override browser default blue links inside card text */
+.card-text p a,
+.card-text p span {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.service-container {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.service-hero {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,27,42,0.70) 0%,
+    rgba(13,27,42,0.88) 100%
+  );
+  z-index: 1;
+}
+
+.service-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold),
+    var(--gold-light),
+    var(--gold),
+    transparent
+  );
+  z-index: 3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hero-eyebrow {
+  font-family: var(--ff-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-content h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
+.underline {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  margin-top: 20px;
+  border-radius: 2px;
+}
+
+/* ══════════════════════════════════════════
+   INTRO / EXPERTISE SECTION
+══════════════════════════════════════════ */
+.service-content {
+  background: var(--navy);
+  padding: 80px 8%;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(201,168,76,0.06) 1px,
+    transparent 1px
+  );
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+.service-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.service-content-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-family: var(--ff-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-label::before,
+.section-label::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.service-content-inner h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.section-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+  margin: 18px auto 28px;
+  border-radius: 2px;
+}
+
+.service-content-inner p {
+  font-size: 1rem;
+  line-height: 1.95;
+  color: rgba(255,255,255,0.62);
+  font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   PRACTICE AREA CARDS — DESKTOP
+══════════════════════════════════════════ */
+.practice-areas {
+  background: var(--cream);
+}
+
+.practice-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(201,168,76,0.14);
+  min-height: 520px;
+}
+
+.practice-card:last-child {
+  border-bottom: none;
+}
+
+/* Default: image right, text left */
+.practice-card .card-text  { order: 1; }
+.practice-card .card-image { order: 2; }
+
+/* Reverse: image left, text right */
+.practice-card.reverse .card-image { order: 1; }
+.practice-card.reverse .card-text  { order: 2; }
+
+/* ── Image side ── */
+.card-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  min-height: 520px;
+}
+
+.card-image-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease;
+  opacity: 0.93;
+}
+
+.practice-card:hover .card-image img {
+  transform: scale(1.04);
+  opacity: 0.8;
+}
+
+.card-image-number {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  font-family: var(--ff-display);
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.1);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Gold vertical accent line */
+.practice-card .card-image::after {
+  content: '';
+  position: absolute;
+  top: 8%; bottom: 8%;
+  right: 0;
+  left: auto;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  z-index: 3;
+}
+
+.practice-card.reverse .card-image::after {
+  right: auto;
+  left: 0;
+}
+
+/* ── Text side ── */
+.card-text {
+  background: var(--white);
+  padding: 64px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Decorative corner bracket */
+.card-text::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  width: 52px;
+  height: 52px;
+  border-top: 2px solid rgba(201,168,76,0.28);
+  border-left: 2px solid rgba(201,168,76,0.28);
+}
+
+.practice-card.reverse .card-text::before {
+  left: auto;
+  right: 36px;
+  border-left: none;
+  border-right: 2px solid rgba(201,168,76,0.28);
+}
+
+.card-icon-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.icon-square {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.icon-square.gold  { background: var(--gold); }
+.icon-square.navy  { background: var(--navy); opacity: 0.3; }
+
+.card-text h3 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 600;
+  color: var(--navy) !important;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.card-divider {
+  width: 44px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 16px 0 26px;
+  flex-shrink: 0;
+}
+
+/* ── KEY FIX: force paragraph text color, kill link coloring ── */
+.card-text p {
+  font-size: 0.94rem;
+  line-height: 1.92;
+  color: var(--slate) !important;
+  font-weight: 300;
+  text-align: left;
+  margin-bottom: 14px;
+  /* Prevent any child links/spans from changing color */
+  text-decoration: none;
+}
+
+.card-text p * {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.card-text p:last-of-type { margin-bottom: 0; }
+
+/* ── Read More Button — hidden on desktop ── */
+.read-more-btn {
+  display: none;
+}
+
+/* ── CTA link ── */
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  align-self: flex-start;
+  font-family: var(--ff-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy) !important;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--gold);
+  padding-bottom: 3px;
+  transition: color var(--transition), gap var(--transition);
+}
+
+.card-cta span {
+  font-family: sans-serif;
+  font-size: 1rem;
+  transition: transform var(--transition);
+}
+
+.card-cta:hover {
+  color: var(--gold) !important;
+  gap: 12px;
+}
+
+.card-cta:hover span {
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════════════
+   LOADING STATE
+══════════════════════════════════════════ */
+.site-loading {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.site-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(201,168,76,0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.site-loading p {
+  font-family: var(--ff-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE BOOK BUTTON
+══════════════════════════════════════════ */
+.mobile-book-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  padding: 14px 36px;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-family: var(--ff-body);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(201,168,76,0.4);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.mobile-book-btn:hover {
+  background: var(--gold-light);
+  transform: translateX(-50%) scale(1.04);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET  ≤1100px
+══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .card-text {
+    padding: 52px 48px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE  ≤900px
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Hero */
+  .service-hero {
+    height: 280px;
+    background-attachment: scroll;
+  }
+
+  /* Intro */
+  .service-content {
+    padding: 52px 6%;
+  }
+
+  /* Show mobile book button */
+  .mobile-book-btn {
+    display: block;
+  }
+
+  /* Stack card columns vertically */
+  .practice-card,
+  .practice-card.reverse {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  /* Image always on top */
+  .practice-card .card-image,
+  .practice-card.reverse .card-image {
+    order: 1 !important;
+    min-height: 260px;
+    height: 260px;
+  }
+
+  /* Text always below */
+  .practice-card .card-text,
+  .practice-card.reverse .card-text {
+    order: 2 !important;
+  }
+
+  /* Gold accent line — horizontal on mobile */
+  .practice-card .card-image::after,
+  .practice-card.reverse .card-image::after {
+    top: auto;
+    bottom: 0;
+    left: 8%;
+    right: 8%;
+    width: auto;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  /* Card text padding on mobile */
+  .card-text {
+    padding: 32px 20px 36px;
+  }
+
+  /* Hide decorative corner bracket on mobile */
+  .card-text::before,
+  .practice-card.reverse .card-text::before {
+    display: none;
+  }
+
+  /* Show Read More toggle on mobile */
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    align-self: flex-start;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--ff-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px dashed rgba(201,168,76,0.5);
+    padding-bottom: 2px;
+    transition: color var(--transition);
+  }
+
+  .read-more-btn:hover {
+    color: var(--gold-light);
+  }
+
+  /* Card number smaller */
+  .card-image-number {
+    font-size: 4rem;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  /* Add bottom padding for fixed book button */
+  .practice-areas {
+    padding-bottom: 80px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE  ≤600px
+══════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .service-hero {
+    height: 240px;
+  }
+
+  .service-content {
+    padding: 44px 5%;
+  }
+
+  .service-content-inner h2 {
+    font-size: 1.5rem;
+  }
+
+  .service-content-inner p {
+    font-size: 0.9rem;
+  }
+
+  .practice-card .card-image,
+  .practice-card.reverse .card-image {
+    min-height: 220px;
+    height: 220px;
+  }
+
+  .card-text {
+    padding: 26px 16px 30px;
+  }
+
+  .card-text h3 {
+    font-size: 1.4rem;
+  }
+
+  .card-text p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  .card-cta {
+    margin-top: 24px;
+  }
+
+  .mobile-book-btn {
+    padding: 13px 28px;
+    font-size: 0.88rem;
+    bottom: 16px;
+  }
+}

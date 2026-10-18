@@ -1,0 +1,41 @@
+/* Clean base styles: replaces the Vite starter template defaults */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  display: block;            /* was: display:flex; place-items:center */
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Poppins', system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #ffffff;
+  color: #213547;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Safety net: if the page transition ever leaves inline styles on
+   <html> or <body>, these keep the layout full width. */
+html, body {
+  max-width: 100% !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+[id] { scroll-margin-top: 100px; }

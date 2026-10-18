@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 48px 0 32px;
+  height: 85px;
+  align-items: center;
+  background: linear-gradient(105deg, #0a1422 0%, #0d1e35 55%, #091525 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* gold shimmer top bar */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #8a6b20 15%,
+    #c9a84c 35%,
+    #f0d070 50%,
+    #c9a84c 65%,
+    #8a6b20 85%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   LOGO – SHINING + ANIMATED GOLD BADGE
+══════════════════════════════════════════ */
+.logo-link {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.logo-mark {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  padding: 3px;
+  border-radius: 50%;
+  isolation: isolate;
+  background: transparent;
+  animation: logoGlow 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+/* rotating gold ring */
+.logo-mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    #8a6b20,
+    #f0d070,
+    #c9a84c,
+    #fff3b0,
+    #c9a84c,
+    #8a6b20
+  );
+  animation: ringSpin 4s linear infinite;
+}
+
+/* diagonal shine streak sweeping across the logo */
+.logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.75) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  animation: logoShine 3.5s ease-in-out infinite;
+}
+
+.logo-img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0a1422;   /* dark gap between ring and image */
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.logo-link:hover .logo-mark {
+  transform: scale(1.08);
+}
+
+.logo-link:hover .logo-mark::before {
+  animation-duration: 1.5s;    /* ring spins faster on hover */
+}
+
+.logo-link:hover .logo-mark::after {
+  animation-duration: 1.2s;    /* shine sweeps faster on hover */
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #f5f0e8;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logo-gold {
+  color: #c9a84c;
+}
+
+.logo-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: rgba(201, 168, 76, 0.65);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Logo keyframes ── */
+@keyframes ringSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes logoShine {
+  0%        { background-position: 150% 0; }
+  45%, 100% { background-position: -50% 0; }
+}
+
+@keyframes logoGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(201, 168, 76, 0.35),
+      0 4px 18px rgba(201, 168, 76, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(240, 208, 112, 0.6),
+      0 4px 30px rgba(240, 208, 112, 0.55);
+  }
+}
+
+/* ══════════════════════════════════════════
+   DESKTOP NAV
+══════════════════════════════════════════ */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: 28px;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(160, 185, 210, 0.85);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  padding: 7px 15px;
+  border-radius: 4px;
+  position: relative;
+  transition: color 0.25s, background 0.25s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 3px; left: 15px; right: 15px;
+  height: 1px;
+  background: linear-gradient(90deg, #c9a84c, #f0d070);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #f5f0e8;
+  background: rgba(201, 168, 76, 0.07);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
+  color: #c9a84c;
+}
+
+/* ══════════════════════════════════════════
+   RIGHT ACTIONS
+══════════════════════════════════════════ */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.header-tel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(201, 168, 76, 0.65);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ── CTA Button ── */
+.cta {
+  border: none;
+  cursor: pointer;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #0b1728;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #d4a830 0%, #c9a84c 40%, #e8c55a 70%, #c9a84c 100%);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.4),
+    0 4px 18px rgba(201, 168, 76, 0.22);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(240, 208, 112, 0.65),
+    0 8px 28px rgba(201, 168, 76, 0.42);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   HAMBURGER (hidden on desktop)
+══════════════════════════════════════════ */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: #c9a84c;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ══════════════════════════════════════════
+   MOBILE DRAWER
+══════════════════════════════════════════ */
+.mobile-drawer {
+  display: none;
+  flex-direction: column;
+  background: #0d1e35;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 8px 16px 16px;
+  gap: 2px;
+}
+
+.mobile-drawer.show {
+  display: flex;
+}
+
+.drawer-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(160, 185, 210, 0.85);
+  letter-spacing: 0.04em;
+  padding: 13px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.drawer-link:last-of-type {
+  border-bottom: none;
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  color: #c9a84c;
+}
+
+.mobile-cta {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 22px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+/* ══════════════════════════════════════════
+   CALL BUTTON
+══════════════════════════════════════════ */
+
+/* ── Desktop: top-right pill ── */
+.call-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 8px;
+  border-radius: 999px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #0b1728;
+  background: linear-gradient(135deg, #d4a830 0%, #c9a84c 45%, #f0d070 100%);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.4),
+    0 4px 18px rgba(201, 168, 76, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* light sweep on hover */
+.call-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(240, 208, 112, 0.65),
+    0 8px 28px rgba(201, 168, 76, 0.42);
+}
+
+.call-btn:hover::after {
+  left: 120%;
+}
+
+.call-btn:active {
+  transform: translateY(0);
+}
+
+.call-btn-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #c9a84c;
+  background: #0b1728;
+}
+
+.call-btn:hover .call-btn-icon svg {
+  animation: phoneRing 0.6s ease 2;
+}
+
+.call-btn-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.call-btn-text small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.call-btn-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.call-btn:focus-visible,
+.call-fab:focus-visible {
+  outline: 2px solid #f0d070;
+  outline-offset: 3px;
+}
+
+/* ── Mobile: floating button, bottom right (hidden on desktop) ── */
+.call-fab {
+  display: none;
+}
+
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-18deg); }
+  75%      { transform: rotate(18deg); }
+}
+
+@keyframes fabPulse {
+  0%   { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(201, 168, 76, 0.55); }
+  70%  { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 16px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE (≤ 900px)
+══════════════════════════════════════════ */
+@media screen and (max-width: 900px) {
+  .header {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  .nav,
+  .header-actions {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .logo-wordmark {
+    font-size: 16px;
+  }
+
+  .logo-tagline {
+    display: none;
+  }
+
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+  }
+
+  .call-fab {
+    position: fixed;
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #0b1728;
+    text-decoration: none;
+    background: linear-gradient(135deg, #d4a830, #f0d070);
+    animation: fabPulse 2.4s ease-out infinite;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .call-fab:active {
+    transform: scale(0.94);
+  }
+}
+
+/* ══════════════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark,
+  .logo-mark::before,
+  .logo-mark::after,
+  .call-fab,
+  .call-btn:hover .call-btn-icon svg {
+    animation: none;
+  }
+}
